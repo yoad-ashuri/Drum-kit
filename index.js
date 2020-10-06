@@ -9,12 +9,14 @@ for (var i = 0; i < buttons.length; i++) {
 function clickHendler() {
   var buttonName = this.innerHTML;
   makeSound(buttonName);
+  buttonAnimation(buttonName);
 }
 
 //detecting keybord press
 
 document.addEventListener("keypress", function(event) {
   makeSound(event.key);
+  buttonAnimation(event.key);
 });
 
 
@@ -61,4 +63,12 @@ function makeSound(key) {
       console.log(key);
 
   }
+}
+
+function buttonAnimation(currKey) {
+  var activeKey = document.querySelector("." + currKey);
+  activeKey.classList.add("pressed");
+  setTimeout(function() {
+    activeKey.classList.remove("pressed");
+  }, 100);
 }
